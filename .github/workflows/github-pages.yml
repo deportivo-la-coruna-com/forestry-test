@@ -14,7 +14,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Cache
         uses: actions/cache@v2
         with:
@@ -22,12 +22,11 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-
-          
+
       - name: Build and Export
         uses: actions/setup-node@v2
-        run: |
-          npm install
-          npm run export
+      - run: npm install
+      - run: npm run export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
